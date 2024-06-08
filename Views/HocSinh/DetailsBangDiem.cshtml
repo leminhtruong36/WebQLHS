@@ -1,0 +1,71 @@
+﻿@model WebQLHS.Models.BangDiem
+
+@{
+    ViewData["Title"] = "Thông tin bảng điểm";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 style="background-color: white;">Thông tin bảng điểm</h1>
+        <div style="background-color: white;">
+            <h4>Bảng điểm</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.MaBangDiem)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.MaBangDiem)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.HocKy)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.HocKy)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DiemToan)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DiemToan)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DiemLy)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DiemLy)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DiemHoa)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DiemHoa)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DiemVan)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DiemVan)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DiemNgoaiNgu)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DiemNgoaiNgu)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="EditBangDiem" asp-route-id="@Model.MaBangDiem">Chỉnh sửa</a>
+            <a asp-action="DanhSachBangDiem">Trở về danh sách</a>
+        </div>
+
+    </div>
+</body>
+</html>

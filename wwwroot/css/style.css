@@ -1,0 +1,103 @@
+﻿html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+@media (max-width: 991px){
+    .sidebar{
+        background-color: rgba(255,255,255,0.15);
+        backdrop-filter:blur(20px);
+    }
+    .box-search {
+        position: static;
+        margin: 5px 0;
+        width: auto;
+    }
+
+        .box-search:hover input {
+            width: 100%;
+        }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background: url('../img/dark_bg.jpg');
+    background-blend-mode:multiply;
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+
+.box-search {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    height: 30px;
+    cursor: pointer;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    margin: 5px;
+    background-color: rgb(255,255,255);
+}
+
+    .box-search:hover input {
+        width: 70px;
+    }
+
+    .box-search input {
+        width: 0;
+        outline: none;
+        border: none;
+        font-weight: 500;
+        transition: width 0.8s;
+        background: transparent;
+        color: black;
+    }
+
+    .box-search a .fas {
+        color: black;
+        font-size: 18px;
+    }
+.navbar-item {
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    background-color: #f2f2f2;
+    transition: all 0.3s ease;
+}
+
+    /* Hover styles for navbar items */
+    .navbar-item:hover {
+        background-color: #f2f2f2;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #000;
+    }
+
+    /* Active styles for navbar items */
+    .navbar-item.active {
+        background-color: #e6e6e6;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #000;
+        position: relative;
+    }
+
+        .navbar-item.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background-color: #333;
+        }

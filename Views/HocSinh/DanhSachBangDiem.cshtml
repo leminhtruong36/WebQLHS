@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebQLHS.Models.BangDiem>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<div class="container">
+		<h1 style="background-color: white;">Danh sách bảng điểm</h1>
+
+		<table class="table" style="background-color: white;">
+			<thead>
+				<tr>
+					<th>Mã bảng điểm</th>
+					<th>Học kỳ</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var bangDiem in Model)
+				{
+					<tr>
+						<td>@bangDiem.MaBangDiem</td>
+						<td>@bangDiem.HocKy</td>
+						<td>
+							<a asp-action="DetailsBangDiem" asp-route-id="@bangDiem.MaBangDiem">Chi tiết</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>
