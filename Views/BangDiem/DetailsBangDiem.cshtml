@@ -1,4 +1,4 @@
-﻿@model WebQLHS.Models.BangDiem
+﻿@model WebQLHS.Controllers.BangDiemController.BangDiemViewModel
 
 @{
     ViewData["Title"] = "Thông tin bảng điểm";
@@ -22,6 +22,12 @@
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.MaBangDiem)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.MaHocSinh)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.MaHocSinh)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.HocKy)

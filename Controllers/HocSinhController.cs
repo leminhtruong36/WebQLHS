@@ -49,7 +49,7 @@ namespace WebQLHS.Controllers
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(string id, [Bind("MaHS,HoTen,GioiTinh,DiaChi,NgaySinh,MaLop,EmailHocSinh")] HocSinh hocSinh)
+		public async Task<IActionResult> Edit(string id, [Bind("MaHS,HoTen,GioiTinh,DiaChi,NgaySinh,MaLop,EmailHocSinh,MaBangDiem,MaTK,MaGiaoDich")] HocSinh hocSinh)
 		{
 			if (id != hocSinh.MaHS)
 			{
@@ -83,28 +83,5 @@ namespace WebQLHS.Controllers
 			return _context.HocSinh.Any(e => e.MaHS == id);
 		}
 
-		//Lay danh sach bang diem
-        public async Task<IActionResult> DanhSachBangDiem()
-        {
-            var bangDiem = await _context.BangDiem.ToListAsync();
-            return View(bangDiem);
-        }
-
-		//xem chi tiet bang diem
-		[Route("HocSinh/DetailsBangDiem/{id}")]
-		public async Task<IActionResult> DetailsBangDiem(String? id)
-		{
-			if (string.IsNullOrEmpty(id))
-			{
-				return NotFound();
-			}
-
-			var bangDiem = await _context.BangDiem.FindAsync(id);
-			if (bangDiem == null)
-			{
-				return NotFound();
-			}
-			return View(bangDiem);
-		}
 	}
 }

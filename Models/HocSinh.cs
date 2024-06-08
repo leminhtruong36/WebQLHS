@@ -14,5 +14,8 @@ namespace WebQLHS.Models
         public DateTime NgaySinh { get; set; }
         public string MaLop { get; set; }
         public string EmailHocSinh { get; set; }
+        public string MaTK { get; set; }
+        public string MaGiaoDich { get; set; }
+        public virtual BangDiem BangDiem { get; set; }
     }
 }

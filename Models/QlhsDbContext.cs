@@ -13,7 +13,10 @@ namespace WebQLHS.Models
                 .HasKey(hs => hs.MaHS);
             modelBuilder.Entity<BangDiem>()
                 .HasKey(bd => bd.MaBangDiem);
-
+            modelBuilder.Entity<BangDiem>()
+                .HasOne(typeof(HocSinh), "HocSinh")
+                .WithMany("BangDiem")
+                .HasForeignKey("MaHocSinh");
             //modelBuilder.Entity<HocSinh>()
             //    .HasOne(hs => hs.GiaoVien)
             //    .WithMany(gv => gv.HocSinhs)
