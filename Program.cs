@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Localization;
+﻿using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using WebQLHS.Models;
 
@@ -7,11 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("QLHSConnection");
+// Tải cấu hình từ appsettings.json
+builder.Configuration.AddJsonFile("appsettings.json", optional: false);
 
-builder.Services.AddDbContext<QLHS_1Context>(options =>
-    options.UseSqlServer(connectionString));
 
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -32,9 +32,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Access}/{action=Login}/{id?}");
 
 app.Run();

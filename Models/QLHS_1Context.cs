@@ -33,7 +33,8 @@ namespace WebQLHS.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Name=QLHSConnection");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=TEE;Initial Catalog=QLHS_1;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
             }
         }
 
@@ -42,7 +43,7 @@ namespace WebQLHS.Models
             modelBuilder.Entity<BaiTap>(entity =>
             {
                 entity.HasKey(e => e.MaBaiTap)
-                    .HasName("PK__BaiTap__3AF6A91584D8C7EE");
+                    .HasName("PK__BaiTap__3AF6A91511B810CD");
 
                 entity.ToTable("BaiTap");
 
@@ -70,23 +71,23 @@ namespace WebQLHS.Models
                     .WithMany(p => p.BaiTaps)
                     .HasForeignKey(d => d.MaLopHoc)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BaiTap__MaLopHoc__3F466844");
+                    .HasConstraintName("FK__BaiTap__MaLopHoc__4AB81AF0");
 
                 entity.HasOne(d => d.MaNvNavigation)
                     .WithMany(p => p.BaiTaps)
                     .HasForeignKey(d => d.MaNv)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BaiTap__MaNV__3E52440B");
+                    .HasConstraintName("FK__BaiTap__MaNV__49C3F6B7");
             });
 
             modelBuilder.Entity<BangDiem>(entity =>
             {
                 entity.HasKey(e => e.MaBangDiem)
-                    .HasName("PK__BangDiem__9D44FE48327549F4");
+                    .HasName("PK__BangDiem__9D44FE48BC614A6F");
 
                 entity.ToTable("BangDiem");
 
-                entity.HasIndex(e => new { e.MaHs, e.MaMh }, "UQ__BangDiem__A557FB139EF3E120")
+                entity.HasIndex(e => new { e.MaHs, e.MaMh }, "UQ__BangDiem__A557FB1307DE30CA")
                     .IsUnique();
 
                 entity.Property(e => e.MaBangDiem)
@@ -110,19 +111,19 @@ namespace WebQLHS.Models
                     .WithMany(p => p.BangDiems)
                     .HasForeignKey(d => d.MaHs)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BangDiem__MaHS__59063A47");
+                    .HasConstraintName("FK__BangDiem__MaHS__619B8048");
 
                 entity.HasOne(d => d.MaMhNavigation)
                     .WithMany(p => p.BangDiems)
                     .HasForeignKey(d => d.MaMh)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BangDiem__MaMH__59FA5E80");
+                    .HasConstraintName("FK__BangDiem__MaMH__628FA481");
             });
 
             modelBuilder.Entity<ChucVu>(entity =>
             {
                 entity.HasKey(e => e.MaCv)
-                    .HasName("PK__ChucVu__27258E768B459AE8");
+                    .HasName("PK__ChucVu__27258E7631377CA8");
 
                 entity.ToTable("ChucVu");
 
@@ -144,13 +145,13 @@ namespace WebQLHS.Models
                     .WithMany(p => p.ChucVus)
                     .HasForeignKey(d => d.MaNv)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ChucVu__MaNV__4222D4EF");
+                    .HasConstraintName("FK__ChucVu__MaNV__4D94879B");
             });
 
             modelBuilder.Entity<HocSinh>(entity =>
             {
                 entity.HasKey(e => e.MaHs)
-                    .HasName("PK__HocSinh__2725A6EF79DE009C");
+                    .HasName("PK__HocSinh__2725A6EFAB2AFBEB");
 
                 entity.ToTable("HocSinh");
 
@@ -185,19 +186,19 @@ namespace WebQLHS.Models
                     .WithMany(p => p.HocSinhs)
                     .HasForeignKey(d => d.MaLopHoc)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__HocSinh__MaLopHo__47DBAE45");
+                    .HasConstraintName("FK__HocSinh__MaLopHo__5070F446");
 
                 entity.HasOne(d => d.MaTkNavigation)
                     .WithMany(p => p.HocSinhs)
                     .HasForeignKey(d => d.MaTk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__HocSinh__MaTK__48CFD27E");
+                    .HasConstraintName("FK__HocSinh__MaTK__5165187F");
             });
 
             modelBuilder.Entity<Lop>(entity =>
             {
                 entity.HasKey(e => e.MaLopHoc)
-                    .HasName("PK__Lop__FEE0578410A94583");
+                    .HasName("PK__Lop__FEE05784B2DA335B");
 
                 entity.ToTable("Lop");
 
@@ -212,7 +213,7 @@ namespace WebQLHS.Models
             modelBuilder.Entity<MonHoc>(entity =>
             {
                 entity.HasKey(e => e.MaMh)
-                    .HasName("PK__MonHoc__2725DFD979F42C5F");
+                    .HasName("PK__MonHoc__2725DFD968CDBD1D");
 
                 entity.ToTable("MonHoc");
 
@@ -228,11 +229,11 @@ namespace WebQLHS.Models
             modelBuilder.Entity<MonHocTkb>(entity =>
             {
                 entity.HasKey(e => e.MaMhTkb)
-                    .HasName("PK__MonHoc_T__8A44B1D6D7BB5549");
+                    .HasName("PK__MonHoc_T__8A44B1D63ABCC884");
 
                 entity.ToTable("MonHoc_TKB");
 
-                entity.HasIndex(e => new { e.MaMh, e.MaTkb }, "UQ__MonHoc_T__D43142B80427D49C")
+                entity.HasIndex(e => new { e.MaMh, e.MaTkb }, "UQ__MonHoc_T__D43142B8B62CC7B4")
                     .IsUnique();
 
                 entity.Property(e => e.MaMhTkb)
@@ -257,19 +258,19 @@ namespace WebQLHS.Models
                     .WithMany(p => p.MonHocTkbs)
                     .HasForeignKey(d => d.MaMh)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__MonHoc_TKB__MaMH__5441852A");
+                    .HasConstraintName("FK__MonHoc_TKB__MaMH__5CD6CB2B");
 
                 entity.HasOne(d => d.MaTkbNavigation)
                     .WithMany(p => p.MonHocTkbs)
                     .HasForeignKey(d => d.MaTkb)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__MonHoc_TK__MaTKB__5535A963");
+                    .HasConstraintName("FK__MonHoc_TK__MaTKB__5DCAEF64");
             });
 
             modelBuilder.Entity<NhanVien>(entity =>
             {
                 entity.HasKey(e => e.MaNv)
-                    .HasName("PK__NhanVien__2725D70A38314326");
+                    .HasName("PK__NhanVien__2725D70A0EE71C27");
 
                 entity.ToTable("NhanVien");
 
@@ -290,23 +291,35 @@ namespace WebQLHS.Models
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.MaTk)
+                    .HasMaxLength(15)
+                    .IsUnicode(false)
+                    .HasColumnName("MaTK")
+                    .IsFixedLength();
+
                 entity.Property(e => e.NgaySinh).HasColumnType("date");
 
                 entity.HasOne(d => d.MaLopHocNavigation)
                     .WithMany(p => p.NhanViens)
                     .HasForeignKey(d => d.MaLopHoc)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__NhanVien__MaLopH__3B75D760");
+                    .HasConstraintName("FK__NhanVien__MaLopH__45F365D3");
+
+                entity.HasOne(d => d.MaTkNavigation)
+                    .WithMany(p => p.NhanViens)
+                    .HasForeignKey(d => d.MaTk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__NhanVien__MaTK__46E78A0C");
             });
 
             modelBuilder.Entity<NhapDiem>(entity =>
             {
                 entity.HasKey(e => e.MaNhapDiem)
-                    .HasName("PK__NhapDiem__FCC9F48B3AC1B78A");
+                    .HasName("PK__NhapDiem__FCC9F48B8C31B806");
 
                 entity.ToTable("NhapDiem");
 
-                entity.HasIndex(e => new { e.MaMh, e.MaNv }, "UQ__NhapDiem__955782A8EE35622A")
+                entity.HasIndex(e => new { e.MaMh, e.MaNv }, "UQ__NhapDiem__955782A811A3617D")
                     .IsUnique();
 
                 entity.Property(e => e.MaNhapDiem)
@@ -335,25 +348,25 @@ namespace WebQLHS.Models
                     .WithMany(p => p.NhapDiems)
                     .HasForeignKey(d => d.MaBangDiem)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__NhapDiem__MaBang__5FB337D6");
+                    .HasConstraintName("FK__NhapDiem__MaBang__68487DD7");
 
                 entity.HasOne(d => d.MaMhNavigation)
                     .WithMany(p => p.NhapDiems)
                     .HasForeignKey(d => d.MaMh)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__NhapDiem__MaMH__5DCAEF64");
+                    .HasConstraintName("FK__NhapDiem__MaMH__66603565");
 
                 entity.HasOne(d => d.MaNvNavigation)
                     .WithMany(p => p.NhapDiems)
                     .HasForeignKey(d => d.MaNv)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__NhapDiem__MaNV__5EBF139D");
+                    .HasConstraintName("FK__NhapDiem__MaNV__6754599E");
             });
 
             modelBuilder.Entity<TaiKhoan>(entity =>
             {
                 entity.HasKey(e => e.MaTk)
-                    .HasName("PK__TaiKhoan__27250070B2D309CD");
+                    .HasName("PK__TaiKhoan__2725007058B0D4ED");
 
                 entity.ToTable("TaiKhoan");
 
@@ -367,27 +380,15 @@ namespace WebQLHS.Models
 
                 entity.Property(e => e.LoaiTaiKhoan).HasMaxLength(20);
 
-                entity.Property(e => e.MaNv)
-                    .HasMaxLength(15)
-                    .IsUnicode(false)
-                    .HasColumnName("MaNV")
-                    .IsFixedLength();
-
                 entity.Property(e => e.Mk)
                     .HasMaxLength(100)
                     .HasColumnName("MK");
-
-                entity.HasOne(d => d.MaNvNavigation)
-                    .WithMany(p => p.TaiKhoans)
-                    .HasForeignKey(d => d.MaNv)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__TaiKhoan__MaNV__44FF419A");
             });
 
             modelBuilder.Entity<ThuChi>(entity =>
             {
                 entity.HasKey(e => e.MaGiaoDich)
-                    .HasName("PK__ThuChi__0A2A24EB12D1440D");
+                    .HasName("PK__ThuChi__0A2A24EBEC23173B");
 
                 entity.ToTable("ThuChi");
 
@@ -418,19 +419,19 @@ namespace WebQLHS.Models
                     .WithMany(p => p.ThuChis)
                     .HasForeignKey(d => d.MaHs)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ThuChi__MaHS__4F7CD00D");
+                    .HasConstraintName("FK__ThuChi__MaHS__5812160E");
 
                 entity.HasOne(d => d.MaNvNavigation)
                     .WithMany(p => p.ThuChis)
                     .HasForeignKey(d => d.MaNv)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ThuChi__MaNV__5070F446");
+                    .HasConstraintName("FK__ThuChi__MaNV__59063A47");
             });
 
             modelBuilder.Entity<Tkb>(entity =>
             {
                 entity.HasKey(e => e.MaTkb)
-                    .HasName("PK__TKB__3149D60EC16D6E7C");
+                    .HasName("PK__TKB__3149D60EE84A3CAE");
 
                 entity.ToTable("TKB");
 
@@ -460,13 +461,13 @@ namespace WebQLHS.Models
                     .WithMany(p => p.Tkbs)
                     .HasForeignKey(d => d.MaHs)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__TKB__MaHS__4BAC3F29");
+                    .HasConstraintName("FK__TKB__MaHS__5441852A");
 
                 entity.HasOne(d => d.MaNvNavigation)
                     .WithMany(p => p.Tkbs)
                     .HasForeignKey(d => d.MaNv)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__TKB__MaNV__4CA06362");
+                    .HasConstraintName("FK__TKB__MaNV__5535A963");
             });
 
             OnModelCreatingPartial(modelBuilder);

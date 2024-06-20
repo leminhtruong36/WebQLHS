@@ -1,0 +1,65 @@
+﻿@model TaiKhoan
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
+        <title>Login</title>
+        <link href="~/css/access.css" rel="stylesheet" />
+        <script src="~/js/access.js"></script>
+    </head>
+    <body>
+    <div class="wrapper">
+        <div class="title-text"> 
+            <div class="title login">Login Form</div>
+            <div class="title signup">Signup Form</div>
+        </div>
+        <div class="form-container">
+            <div class="slide-controls">
+                <input type="radio" name="slide" id="login" checked>
+                <input type="radio" name="slide" id="signup">
+                <label for="login" class="slide login">Login</label>
+                <label for="signup" class="slide signup">Signup</label>
+                <div class="slider-tab"></div>
+            </div>
+            <div class="form-inner">
+                @using (Html.BeginForm("Login", "Access", FormMethod.Post))
+                {
+                    <div class="field">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control form-control-lg", placeholder = "Emails", required = "required", autofocus = "autofocus" })
+                    </div>
+                    <div class="field">
+                        @Html.TextBoxFor(x => x.Mk, new { @class = "form-control form-control-lg", type = "password", placeholder = "Password", required = "required", autofocus = "autofocus" })
+                    </div>
+                    <div class="pass-link"><a href="#">Forgot password?</a></div>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auto-form-btn" type="submit">SIGN IN</button>
+                    </div>
+                    <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+                }
+                
+
+                <form action="#" class="signup">
+                    <div class="field">
+                        <input type="text" placeholder="Email Address" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Confirm password" required>
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Signup">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </body>
+</html>
+
+
