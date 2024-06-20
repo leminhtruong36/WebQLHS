@@ -1,15 +1,21 @@
-﻿namespace WebQLHS.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace WebQLHS.Models
 {
-    public class BangDiem
+    public partial class BangDiem
     {
-        public string MaBangDiem { get; set; }
-        public string MaHocSinh { get; set; }
-        public string HocKy { get; set; }
-        public double DiemToan { get; set; }
-        public double DiemLy { get; set; }
-        public double DiemHoa { get; set; }
-        public double DiemVan { get; set; }
-        public double DiemNgoaiNgu { get; set; }
-        public virtual HocSinh HocSinh { get; set; }
+        public BangDiem()
+        {
+            NhapDiems = new HashSet<NhapDiem>();
+        }
+
+        public string MaBangDiem { get; set; } = null!;
+        public string MaHs { get; set; } = null!;
+        public string MaMh { get; set; } = null!;
+
+        public virtual HocSinh MaHsNavigation { get; set; } = null!;
+        public virtual MonHoc MaMhNavigation { get; set; } = null!;
+        public virtual ICollection<NhapDiem> NhapDiems { get; set; }
     }
 }

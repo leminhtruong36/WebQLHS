@@ -7,11 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<QlhsDbContext>(opts => {
-    opts.UseSqlServer(
-    builder.Configuration["ConnectionStrings:QLHSConnection"]);
-});
+var connectionString = builder.Configuration.GetConnectionString("QLHSConnection");
 
+builder.Services.AddDbContext<QLHS_1Context>(options =>
+    options.UseSqlServer(connectionString));
 
 
 var app = builder.Build();
