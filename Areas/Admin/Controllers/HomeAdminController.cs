@@ -8,6 +8,7 @@ using WebQLHS.Models.Authentication;
 namespace WebQLHS.Areas.Admin.Controllers
 {
     [Authentication]
+    [CheckRoleUser]
     [Area("admin")]
 	[Route("admin")]
 	[Route("admin/homeadmin")]

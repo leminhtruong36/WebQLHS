@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebQLHS.Models;
+using WebQLHS.Models.Authentication;
+
 
 namespace WebQLHS.Controllers
 {
@@ -28,12 +30,14 @@ namespace WebQLHS.Controllers
                 if (checkRoles != null)
                 {
                     HttpContext.Session.SetString("Username", checkRoles.Email.ToString().Trim());
+                    HttpContext.Session.SetString("Role", checkRoles.LoaiTaiKhoan.ToString().Trim());
                     return RedirectToAction("index", "homeadmin", new { area = "admin" });
                 }
                 var u = db.TaiKhoans.Where(x => x.Email.Equals(user.Email) && x.Mk.Equals(user.Mk)).FirstOrDefault();
                 if (u != null)
                 {
                     HttpContext.Session.SetString("Username", u.Email.ToString().Trim());
+                    HttpContext.Session.SetString("Role", u.LoaiTaiKhoan.ToString().Trim());
                     return RedirectToAction("Index", "Home");
                 }
 
