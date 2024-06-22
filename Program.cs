@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Localization;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using WebQLHS.Models;
 
@@ -9,6 +11,13 @@ builder.Services.AddControllersWithViews();
 
 // Tải cấu hình từ appsettings.json
 builder.Configuration.AddJsonFile("appsettings.json", optional: false);
+
+var connectionString = builder.Configuration.GetConnectionString("QLHS_1Connection");
+Console.WriteLine($"Connection String: {connectionString}"); // Debug line
+
+builder.Services.AddDbContext<QLHS_1Context>(options =>
+options.UseSqlServer(connectionString));
+
 
 
 builder.Services.AddSession();
@@ -26,16 +35,21 @@ app.UseRequestLocalization(new RequestLocalizationOptions
     DefaultRequestCulture = new RequestCulture("vi-VN")
 });
 
-
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+
 app.UseAuthorization();
 app.UseSession();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Access}/{action=Login}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Access}/{action=Login}/{id?}");
+    
+});
 
 app.Run();

@@ -1,0 +1,39 @@
+﻿@model WebQLHS.Models.Lop
+
+@{
+    ViewData["Title"] = "Xóa lớp học";
+}
+
+<h1>Xóa lớp học</h1>
+
+<h3>Bạn chắc chắn muốn xóa chứ ?</h3>
+<div>
+    <h4>LopHoc</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MaLopHoc)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaLopHoc)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TenLop)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TenLop)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SiSo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SiSo)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteConfirmed">
+        <input type="hidden" asp-for="MaLopHoc" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="DanhSachLopHoc">Back to List</a>
+    </form>
+</div>

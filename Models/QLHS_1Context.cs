@@ -304,7 +304,7 @@ namespace WebQLHS.Models
                     .HasForeignKey(d => d.MaLopHoc)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__NhanVien__MaLopH__45F365D3");
-
+                
                 entity.HasOne(d => d.MaTkNavigation)
                     .WithMany(p => p.NhanViens)
                     .HasForeignKey(d => d.MaTk)

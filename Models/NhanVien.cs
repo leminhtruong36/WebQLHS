@@ -19,11 +19,11 @@ namespace WebQLHS.Models
         public string DiaChi { get; set; } = null!;
         public DateTime NgaySinh { get; set; }
         public string HoTen { get; set; } = null!;
-        public string MaLopHoc { get; set; } = null!;
-        public string MaTk { get; set; } = null!;
+        public string? MaLopHoc { get; set; } = null!;
+        public string? MaTk { get; set; } = null!;
 
-        public virtual Lop MaLopHocNavigation { get; set; } = null!;
-        public virtual TaiKhoan MaTkNavigation { get; set; } = null!;
+        public virtual Lop? MaLopHocNavigation { get; set; } = null!;
+        public virtual TaiKhoan? MaTkNavigation { get; set; } = null!;
         public virtual ICollection<BaiTap> BaiTaps { get; set; }
         public virtual ICollection<ChucVu> ChucVus { get; set; }
         public virtual ICollection<NhapDiem> NhapDiems { get; set; }

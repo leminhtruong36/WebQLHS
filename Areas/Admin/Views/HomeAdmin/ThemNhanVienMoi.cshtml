@@ -1,0 +1,60 @@
+﻿@model WebQLHS.Models.NhanVien
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Thêm nhân viên mới";
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Thêm nhân viên mới</h1>
+
+<h4>Nhân viên</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="ThemNhanVienMoi">
+            <div class="form-group">
+                <label asp-for="MaNv" class="control-label"></label>
+                <input asp-for="MaNv" class="form-control" />
+                <span asp-validation-for="MaNv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GioiTinh" class="control-label"></label>
+                <input asp-for="GioiTinh" class="form-control" />
+                <span asp-validation-for="GioiTinh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaChi" class="control-label"></label>
+                <input asp-for="DiaChi" class="form-control" />
+                <span asp-validation-for="DiaChi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgaySinh" class="control-label"></label>
+                <input asp-for="NgaySinh" class="form-control" type="date"/>
+                <span asp-validation-for="NgaySinh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoTen" class="control-label"></label>
+                <input asp-for="HoTen" class="form-control" />
+                <span asp-validation-for="HoTen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaLopHoc" class="control-label"></label>
+                <input asp-for="MaLopHoc" class="form-control" />
+                <span asp-validation-for="MaLopHoc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaTk" class="control-label"></label>
+                <input asp-for="MaTk" class="form-control" />
+                <span asp-validation-for="MaTk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Thêm mới" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="DanhSachNhanVien">Back to List</a>
+</div>

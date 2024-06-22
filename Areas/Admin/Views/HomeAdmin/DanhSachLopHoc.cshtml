@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebQLHS.Models.Lop>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Danh sách lớp học";
+    Layout = "_LayoutAdmin";
+}
+
+
+<div class="container">
+    <h1>Danh sách lớp học</h1>
+    <p>@TempData["Message"]</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenLop)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SiSo)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenLop)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SiSo)
+                    </td>
+                    <td>
+                        <a asp-action="SuaLopHoc" asp-route-maLop="@item.MaLopHoc.Trim()">Edit</a> |
+                        @* <a asp-action="Details" asp-route-id="@item.MaLopHoc.Trim()">Details</a> | *@
+                        <a asp-action="XoaLopHoc" asp-route-maLop="@item.MaLopHoc.Trim()">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
