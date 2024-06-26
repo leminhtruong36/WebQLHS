@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 using System.Globalization;
+using WebQLHS.Areas.Admin.Models;
 using WebQLHS.Models;
 using WebQLHS.Models.Authentication;
 
@@ -228,6 +229,35 @@ namespace WebQLHS.Areas.Admin.Controllers
             }
 
             return RedirectToAction("DanhSachNhanVien", "HomeAdmin");
+        }
+
+        //xem danh sach hoc sinh cua nhan vien chu nhiem
+        [Route("HomeAdmin/danhsachhocsinhlopchunhiemadmin")]
+        [HttpGet]
+        public IActionResult DanhSachHocSinhLopChuNhiemAdmin(string maNV)
+        {
+            TempData["Message"] = "";
+
+            var nhanVien = db.NhanViens
+                                .Include(nv => nv.MaLopHocNavigation)
+                                .ThenInclude(lh => lh.HocSinhs)
+                                .FirstOrDefault(nv => nv.MaNv == maNV);
+
+            if (nhanVien == null)
+            {
+                TempData["Message"] = "Không tìm thấy nhân viên.";
+                return RedirectToAction("DanhSachNhanVien", "homeadmin");
+            }
+
+            var hocSinhs = nhanVien.MaLopHocNavigation?.HocSinhs?.ToList() ?? new List<HocSinh>();
+
+            var viewModel = new DanhSachHocSinhViewModelAdmin
+            {
+                NhanVienViewModel = nhanVien,
+                HocSinhViewModel = hocSinhs
+            };
+
+            return View(viewModel);
         }
 
 

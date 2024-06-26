@@ -33,6 +33,16 @@ namespace WebQLHS.Controllers
                     HttpContext.Session.SetString("Role", checkRoles.LoaiTaiKhoan.ToString().Trim());
                     return RedirectToAction("index", "homeadmin", new { area = "admin" });
                 }
+
+                var checkRoleGV = db.TaiKhoans.Where(x => x.Email.Equals(user.Email) && x.Mk.Equals(user.Mk) && x.LoaiTaiKhoan.Equals("GiaoVien")).FirstOrDefault();
+                if (checkRoleGV != null)
+                {
+                    HttpContext.Session.SetString("Username", checkRoleGV.Email.ToString().Trim());
+                    HttpContext.Session.SetString("Role", checkRoleGV.LoaiTaiKhoan.ToString().Trim());
+                    HttpContext.Session.SetString("MaNV", checkRoleGV.Ma.ToString().Trim());
+                    return RedirectToAction("index", "homegiaovien", new { area = "giaovien" });
+                }
+
                 var u = db.TaiKhoans.Where(x => x.Email.Equals(user.Email) && x.Mk.Equals(user.Mk)).FirstOrDefault();
                 if (u != null)
                 {

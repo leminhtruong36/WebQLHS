@@ -16,6 +16,7 @@ namespace WebQLHS.Models
         public string Mk { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string LoaiTaiKhoan { get; set; } = null!;
+        public string Ma {  get; set; } = null!;
 
         public virtual ICollection<HocSinh> HocSinhs { get; set; }
         public virtual ICollection<NhanVien> NhanViens { get; set; }

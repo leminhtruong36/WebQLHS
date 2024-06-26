@@ -41,7 +41,8 @@ namespace WebQLHS.Migrations
                     MaTK = table.Column<string>(type: "char(15)", unicode: false, fixedLength: true, maxLength: 15, nullable: false),
                     MK = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    LoaiTaiKhoan = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    LoaiTaiKhoan = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Ma = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,8 +86,8 @@ namespace WebQLHS.Migrations
                     DiaChi = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     NgaySinh = table.Column<DateTime>(type: "date", nullable: false),
                     HoTen = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    MaLopHoc = table.Column<string>(type: "char(15)", unicode: false, fixedLength: true, maxLength: 15, nullable: false),
-                    MaTK = table.Column<string>(type: "char(15)", unicode: false, fixedLength: true, maxLength: 15, nullable: false)
+                    MaLopHoc = table.Column<string>(type: "char(15)", unicode: false, fixedLength: true, maxLength: 15, nullable: true),
+                    MaTK = table.Column<string>(type: "char(15)", unicode: false, fixedLength: true, maxLength: 15, nullable: true)
                 },
                 constraints: table =>
                 {

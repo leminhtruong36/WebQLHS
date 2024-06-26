@@ -1,0 +1,50 @@
+﻿@model WebQLHS.Areas.Admin.Models.DanhSachHocSinhViewModelAdmin
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Danh sách học sinh";
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Danh sách học sinh của lớp @Model.NhanVienViewModel.MaLopHoc</h2>
+
+<!-- Hiển thị thông tin nhân viên -->
+<div>
+    <h3>Thông tin nhân viên</h3>
+    <p>Mã nhân viên: @Model.NhanVienViewModel.MaNv</p>
+    <p>Họ tên: @Model.NhanVienViewModel.HoTen</p>
+</div>
+
+<!-- Hiển thị danh sách học sinh -->
+<h3>Danh sách học sinh trong lớp</h3>
+@if (Model.HocSinhViewModel.Count == 0)
+{
+    <p>Không có học sinh nào trong lớp.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã HS</th>
+                <th>Họ Tên</th>
+                <th>Giới Tính</th>
+                <th>Ngày Sinh</th>
+                <th>Địa Chỉ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hocSinh in Model.HocSinhViewModel)
+            {
+                <tr>
+                    <td>@hocSinh.MaHs</td>
+                    <td>@hocSinh.HoTen</td>
+                    <td>@hocSinh.GioiTinh</td>
+                    <td>@hocSinh.NgaySinh.ToString("dd/MM/yyyy")</td>
+                    <td>@hocSinh.DiaChi</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

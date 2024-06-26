@@ -12,7 +12,7 @@ using WebQLHS.Models;
 namespace WebQLHS.Migrations
 {
     [DbContext(typeof(QLHS_1Context))]
-    [Migration("20240620085647_Initial")]
+    [Migration("20240626060135_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -288,14 +288,12 @@ namespace WebQLHS.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("MaLopHoc")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .IsUnicode(false)
                         .HasColumnType("char(15)")
                         .IsFixedLength();
 
                     b.Property<string>("MaTk")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .IsUnicode(false)
                         .HasColumnType("char(15)")
@@ -380,6 +378,10 @@ namespace WebQLHS.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Ma")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mk")
                         .IsRequired()
@@ -580,13 +582,11 @@ namespace WebQLHS.Migrations
                     b.HasOne("WebQLHS.Models.Lop", "MaLopHocNavigation")
                         .WithMany("NhanViens")
                         .HasForeignKey("MaLopHoc")
-                        .IsRequired()
                         .HasConstraintName("FK__NhanVien__MaLopH__45F365D3");
 
                     b.HasOne("WebQLHS.Models.TaiKhoan", "MaTkNavigation")
                         .WithMany("NhanViens")
                         .HasForeignKey("MaTk")
-                        .IsRequired()
                         .HasConstraintName("FK__NhanVien__MaTK__46E78A0C");
 
                     b.Navigation("MaLopHocNavigation");

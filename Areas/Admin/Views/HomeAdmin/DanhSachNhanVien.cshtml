@@ -48,7 +48,8 @@
                     <td>
                         <a asp-action="SuaNhanVien" asp-route-maNV="@item.MaNv.Trim()">Edit</a> |
                         @* <a asp-action="Details" asp-route-id="@item.MaLopHoc.Trim()">Details</a> | *@
-                        <a asp-action="XoaNhanVien" asp-route-maNV="@item.MaNv.Trim()">Delete</a>
+                        <a asp-action="XoaNhanVien" asp-route-maNV="@item.MaNv.Trim()">Delete</a> |
+                        <a asp-action="DanhSachHocSinhLopChuNhiemAdmin" asp-route-maNV="@item.MaNv.Trim()">Xem học sinh</a>
                     </td>
                 </tr>
             }

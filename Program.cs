@@ -18,6 +18,9 @@ Console.WriteLine($"Connection String: {connectionString}"); // Debug line
 builder.Services.AddDbContext<QLHS_1Context>(options =>
 options.UseSqlServer(connectionString));
 
+//builder.Services.AddIdentity<TaiKhoan, IdentityRole>()
+//        .AddEntityFrameworkStores<QLHS_1Context>()
+//        .AddDefaultTokenProviders();
 
 
 builder.Services.AddSession();

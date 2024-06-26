@@ -204,11 +204,11 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item mx-2">
+                                @* <li class="nav-item mx-2">
                                     <a class="nav-link" asp-area="Admin" asp-controller="HomeAdmin" asp-action="ThemLopMoi">Thêm lớp mới</a>
-                                </li>
+                                </li> *@
                                 <li class="nav-item mx-2">
-                                    <a class="nav-link" asp-area="Admin" asp-controller="HomeAdmin" asp-action="DanhSachLopHoc">Danh sách các lớp học</a>
+                                    <a class="nav-link" asp-area="GiaoVien" asp-controller="HomeGiaoVien" asp-action="DanhSachHocSinhLopChuNhiem">Danh sách học sinh trong lớp học</a>
                                 </li>
                             </ul>
                         </div>
@@ -221,11 +221,11 @@
                         </a>
                         <div class="collapse" id="ui-basic1">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item mx-2">
+                                @* <li class="nav-item mx-2">
                                     <a class="nav-link" asp-area="Admin" asp-controller="HomeAdmin" asp-action="ThemNhanVienMoi">Thêm nhân viên mới</a>
-                                </li>
+                                </li> *@
                                 <li class="nav-item mx-2">
-                                    <a class="nav-link" asp-area="Admin" asp-controller="HomeAdmin" asp-action="DanhSachNhanVien">Danh sách các nhân viên</a>
+                                    <a class="nav-link" asp-area="GiaoVien" asp-controller="HomeAdmin" asp-action="DanhSachNhanVien">Danh sách các nhân viên</a>
                                 </li>
                             </ul>
                         </div>
@@ -291,7 +291,6 @@
                 <!-- content-wrapper ends -->
                 <!-- partial:../../partials/_footer.html -->
                 <footer class="footer">
-                    
                 </footer>
                 <!-- partial -->
             </div>
