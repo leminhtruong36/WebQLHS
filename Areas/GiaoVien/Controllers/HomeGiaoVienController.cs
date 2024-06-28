@@ -50,7 +50,7 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
 				}
 				else
 				{
-					TempData["Message"] = "Không tìm thấy nhân viên.";
+					TempData["Message"] = "Không tìm thấy giáo viên.";
 					return RedirectToAction("Index", "homegiaovien");
 				}
 

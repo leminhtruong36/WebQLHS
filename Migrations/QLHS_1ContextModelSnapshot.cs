@@ -126,6 +126,40 @@ namespace WebQLHS.Migrations
                     b.ToTable("ChucVu", (string)null);
                 });
 
+            modelBuilder.Entity("WebQLHS.Models.DiemDanh", b =>
+                {
+                    b.Property<string>("MaDiemDanh")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(15)
+                        .IsUnicode(false)
+                        .HasColumnType("char(15)")
+                        .IsFixedLength();
+
+                    b.Property<string>("GhiChu")
+                        .IsRequired()
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaHs")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .IsUnicode(false)
+                        .HasColumnType("char(15)")
+                        .IsFixedLength();
+
+                    b.Property<DateTime>("Ngay")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("TrangThai")
+                        .HasColumnType("bit");
+
+                    b.HasKey("MaDiemDanh");
+
+                    b.HasIndex("MaHs");
+
+                    b.ToTable("DiemDanhs");
+                });
+
             modelBuilder.Entity("WebQLHS.Models.HocSinh", b =>
                 {
                     b.Property<string>("MaHs")
@@ -537,6 +571,17 @@ namespace WebQLHS.Migrations
                     b.Navigation("MaNvNavigation");
                 });
 
+            modelBuilder.Entity("WebQLHS.Models.DiemDanh", b =>
+                {
+                    b.HasOne("WebQLHS.Models.HocSinh", "HocSinh")
+                        .WithMany("DiemDanhs")
+                        .HasForeignKey("MaHs")
+                        .IsRequired()
+                        .HasConstraintName("FK_DiemDanh_HocSinh");
+
+                    b.Navigation("HocSinh");
+                });
+
             modelBuilder.Entity("WebQLHS.Models.HocSinh", b =>
                 {
                     b.HasOne("WebQLHS.Models.Lop", "MaLopHocNavigation")
@@ -665,6 +710,8 @@ namespace WebQLHS.Migrations
             modelBuilder.Entity("WebQLHS.Models.HocSinh", b =>
                 {
                     b.Navigation("BangDiems");
+
+                    b.Navigation("DiemDanhs");
 
                     b.Navigation("ThuChis");
 

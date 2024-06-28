@@ -16,6 +16,7 @@ namespace WebQLHS.Models
         {
         }
 
+        public virtual DbSet<DiemDanh> DiemDanhs { get; set; } = null!;
         public virtual DbSet<BaiTap> BaiTaps { get; set; } = null!;
         public virtual DbSet<BangDiem> BangDiems { get; set; } = null!;
         public virtual DbSet<ChucVu> ChucVus { get; set; } = null!;
@@ -40,6 +41,38 @@ namespace WebQLHS.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DiemDanh>(entity =>
+            {
+                entity.HasKey(e => e.MaDiemDanh);
+
+                entity.Property(e => e.MaDiemDanh)
+                      .HasMaxLength(15)
+                      .IsUnicode(false)
+                      .IsFixedLength();
+
+                entity.Property(e => e.MaHs)
+                      .IsRequired()
+                      .HasMaxLength(15)
+                      .IsUnicode(false)
+                      .IsFixedLength();
+
+                entity.Property(e => e.Ngay)
+                      .IsRequired()
+                      .HasColumnType("date");
+
+                entity.Property(e => e.TrangThai)
+                      .IsRequired();
+
+                entity.Property(e => e.GhiChu)
+                      .IsUnicode(true);
+
+                entity.HasOne(d => d.HocSinh)
+                      .WithMany(p => p.DiemDanhs)
+                      .HasForeignKey(d => d.MaHs)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("FK_DiemDanh_HocSinh");
+            });
+
             modelBuilder.Entity<BaiTap>(entity =>
             {
                 entity.HasKey(e => e.MaBaiTap)
