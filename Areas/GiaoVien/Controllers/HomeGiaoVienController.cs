@@ -57,6 +57,76 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
 			}
 			return View();
 		}
-	}
+        //nhap diem
+        [Route("nhapdiem")]
+        public IActionResult NhapDiem()
+        {
+            return View();
+        }
+
+        [Route("nhapdiem")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NhapDiem(NhapDiemHocSinhViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var bangDiem = db.BangDiems
+                    .FirstOrDefault(b => b.MaHs == model.MaHs && b.MaMh == model.MaMh);
+
+                if (bangDiem == null)
+                {
+                    bangDiem = new BangDiem
+                    {
+                        MaBangDiem = model.MaBangDiem,
+                        MaHs = model.MaHs,
+                        MaMh = model.MaMh
+                    };
+
+                    LogValidationErrors();
+                    db.BangDiems.Add(bangDiem);
+                }
+
+                var manv = HttpContext.Session.GetString("MaNV");
+                if (string.IsNullOrEmpty(manv))
+                {
+                    ModelState.AddModelError("", "Cannot find the current employee ID in the session.");
+                    return View(model);
+                }
+
+                var nhapDiem = new NhapDiem
+                {
+                    MaNhapDiem = Guid.NewGuid().ToString().Substring(0, 10),
+                    DiemSo = model.DiemSo,
+                    MaMh = model.MaMh,
+                    MaNv = manv, // Actual current employee ID from session
+                    MaBangDiem = bangDiem.MaBangDiem
+                };
+
+                LogValidationErrors();
+                db.NhapDiems.Add(nhapDiem);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            LogValidationErrors();
+            return View(model);
+        }
+        //Log error
+        private void LogValidationErrors()
+        {
+            foreach (var key in ModelState.Keys)
+            {
+                var state = ModelState[key];
+                foreach (var error in state.Errors)
+                {
+                    // Log each validation error
+                    Console.WriteLine($"Error for {key}: {error.ErrorMessage}");
+                }
+            }
+        }
+    }
+
 }
 

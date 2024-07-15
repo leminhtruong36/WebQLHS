@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -7,7 +9,7 @@ namespace WebQLHS.Models
 {
     public partial class QLHS_1Context : DbContext
     {
-        public QLHS_1Context()
+        public QLHS_1Context() 
         {
         }
 

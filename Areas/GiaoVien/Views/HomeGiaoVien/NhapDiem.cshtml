@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebQLHS.Models.NhapDiemHocSinhViewModel>
+
+@{
+    ViewData["Title"] = "Nhập Điểm Học Sinh";
+}
+
+<h2>Nhập Điểm Học Sinh</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã Bảng Điểm</th>
+            <th>Mã Học Sinh</th>
+            <th>Mã Môn Học</th>
+            <th>Điểm Số</th>
+            <th>Mã Nhân Viên</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaBangDiem</td>
+                <td>@item.MaHs</td>
+                <td>@item.MaMh</td>
+                <td>@item.DiemSo</td>                
+            </tr>
+        }
+    </tbody>
+</table>

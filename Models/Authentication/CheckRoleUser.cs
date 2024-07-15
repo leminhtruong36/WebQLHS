@@ -9,7 +9,7 @@ namespace WebQLHS.Models.Authentication
         {
             if (context.HttpContext.Session.GetString("Role") != "Admin")
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "Home" }, { "Action", "Index" } });
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "HocSinh" }, { "Action", "Index" } });
             }
         }
     }

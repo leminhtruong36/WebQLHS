@@ -3,58 +3,53 @@
 @{
     ViewData["Title"] = "Thông Tin Cá Nhân";
 }
-
-<h2>Thông Tin Cá Nhân</h2>
+<h2>Thông Tin Cá Nhân - @Model.HoTen</h2>
 
 <div>
     <h4>Học Sinh</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            Mã HS
+            Mã HS :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MaHs)
         </dd>
         <dt class="col-sm-2">
-            Họ Tên
+            Họ Tên :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.HoTen)
         </dd>
         <dt class="col-sm-2">
-            Giới Tính
+            Giới Tính :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.GioiTinh)
         </dd>
         <dt class="col-sm-2">
-            Địa Chỉ
+            Địa Chỉ :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DiaChi)
         </dd>
         <dt class="col-sm-2">
-            Ngày Sinh
+            Ngày Sinh :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NgaySinh)
         </dd>
         <dt class="col-sm-2">
-            Email
+            Email :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EmailHocSinh)
         </dd>
         <dt class="col-sm-2">
-            Mã Lớp Học
+            Mã Lớp Học :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MaLopHoc)
         </dd>
     </dl>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

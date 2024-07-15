@@ -88,13 +88,6 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
                 return RedirectToAction("Index", new { maLopHoc = model.MaLopHoc, ngay = model.Ngay });
             }
         }
-
-
-
-
-
-
-
         //Log error
         private void LogValidationErrors()
         {
