@@ -48,8 +48,7 @@ namespace WebQLHS.Controllers
                     HttpContext.Session.SetString("Username", checkHS.Email.ToString().Trim());
                     HttpContext.Session.SetString("Role", checkHS.LoaiTaiKhoan.ToString().Trim());
                     HttpContext.Session.SetString("MaHs", checkHS.Ma.ToString().Trim());
-                    HttpContext.Session.SetString("MaTk", checkHS.MaTk.ToString().Trim());
-
+                    HttpContext.Session.SetString("MaTk", checkHS.MaTk.ToString().Trim());                   
                     return RedirectToAction("index", "HocSinh");
                 }
                 var u = db.TaiKhoans.Where(x => x.Email.Equals(user.Email) && x.Mk.Equals(user.Mk)).FirstOrDefault();
@@ -59,8 +58,6 @@ namespace WebQLHS.Controllers
                     HttpContext.Session.SetString("Role", u.LoaiTaiKhoan.ToString().Trim());
                     return RedirectToAction("Index", "Home");
                 }
-                
-
             }
             return View();
         }

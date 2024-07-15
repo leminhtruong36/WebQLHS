@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebQLHS.Models.ThoiKhoaBieuViewModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thời Khóa Biểu</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Thời Khóa Biểu</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mã TKB</th>
+                <th>Thứ</th>
+                <th>Tiết</th>
+                <th>Tên Học Sinh</th>
+                <th>Tên Giáo Viên</th>
+                <th>Tên Môn Học</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaTkb</td>
+                    <td>@item.Thu</td>
+                    <td>@item.Tiet</td>
+                    <td>@item.TenHocSinh</td>
+                    <td>@item.TenGiaoVien</td>
+                    <td>@item.TenMonHoc</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

@@ -130,17 +130,21 @@ namespace WebQLHS.Migrations
                 {
                     b.Property<string>("MaDiemDanh")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(15)
+                        .HasMaxLength(256)
                         .IsUnicode(false)
-                        .HasColumnType("char(15)")
+                        .HasColumnType("char(256)")
                         .IsFixedLength();
 
                     b.Property<bool>("CoPhep")
                         .HasColumnType("bit");
 
                     b.Property<string>("GhiChu")
+                        .IsRequired()
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("KhongPhep")
+                        .HasColumnType("bit");
 
                     b.Property<string>("MaHs")
                         .IsRequired()
@@ -152,14 +156,11 @@ namespace WebQLHS.Migrations
                     b.Property<DateTime>("Ngay")
                         .HasColumnType("date");
 
-                    b.Property<bool>("TrangThai")
-                        .HasColumnType("bit");
-
                     b.HasKey("MaDiemDanh");
 
                     b.HasIndex("MaHs");
 
-                    b.ToTable("DiemDanhs");
+                    b.ToTable("DiemDanh");
                 });
 
             modelBuilder.Entity("WebQLHS.Models.HocSinh", b =>

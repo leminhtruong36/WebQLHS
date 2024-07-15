@@ -11,9 +11,9 @@ namespace WebQLHS.Models
         public string MaDiemDanh { get; set; }
         public string MaHs { get; set; }
         public DateTime Ngay { get; set; }
-        public bool TrangThai { get; set; }
-        public bool CoPhep { get; set; }
-        public string GhiChu { get; set; }
+        public bool? CoPhep { get; set; }
+        public bool? Vang { get; set; }
+        public string? GhiChu { get; set; }
 
         public virtual HocSinh HocSinh { get; set; }
     }
