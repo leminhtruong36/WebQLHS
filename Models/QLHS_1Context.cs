@@ -16,7 +16,7 @@ namespace WebQLHS.Models
         {
         }
 
-        public virtual DbSet<DiemDanh> DiemDanhs { get; set; } = null!;
+        public virtual DbSet<DiemDanh> DiemDanh { get; set; } = null!;
         public virtual DbSet<BaiTap> BaiTaps { get; set; } = null!;
         public virtual DbSet<BangDiem> BangDiems { get; set; } = null!;
         public virtual DbSet<ChucVu> ChucVus { get; set; } = null!;
@@ -46,7 +46,7 @@ namespace WebQLHS.Models
                 entity.HasKey(e => e.MaDiemDanh);
 
                 entity.Property(e => e.MaDiemDanh)
-                      .HasMaxLength(15)
+                      .HasMaxLength(256)
                       .IsUnicode(false)
                       .IsFixedLength();
 
@@ -62,6 +62,9 @@ namespace WebQLHS.Models
 
                 entity.Property(e => e.TrangThai)
                       .IsRequired();
+
+                entity.Property(e => e.CoPhep) // Định nghĩa trường mới
+             .IsRequired();
 
                 entity.Property(e => e.GhiChu)
                       .IsUnicode(true);

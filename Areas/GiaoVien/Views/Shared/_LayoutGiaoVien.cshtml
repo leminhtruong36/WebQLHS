@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="~/layoutadmin/assets/css\style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/layoutadmin/assets/images\favicon.ico" />
+    @RenderSection("Scripts", required: false)
 </head>
 <body>
     <div class="container-scroller">
@@ -191,7 +192,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="HomeAdmin" asp-action="Index">
+                        <a class="nav-link" asp-area="GiaoVien" asp-controller="HomeGiaoVien" asp-action="Index">
                             <span class="menu-title">Dashboard</span>
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>

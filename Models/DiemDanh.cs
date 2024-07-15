@@ -9,19 +9,12 @@ namespace WebQLHS.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string MaDiemDanh { get; set; }
-
-        [Required]
         public string MaHs { get; set; }
-
-        [Required]
         public DateTime Ngay { get; set; }
-
-        [Required]
         public bool TrangThai { get; set; }
+        public bool CoPhep { get; set; }
+        public string GhiChu { get; set; }
 
-        public string? GhiChu { get; set; }
-
-        [ForeignKey("MaHs")]
         public virtual HocSinh HocSinh { get; set; }
     }
 }

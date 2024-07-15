@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace WebQLHS.Models
+﻿namespace WebQLHS.Models
 {
     public partial class HocSinh
     {
@@ -11,7 +8,6 @@ namespace WebQLHS.Models
             ThuChis = new HashSet<ThuChi>();
             Tkbs = new HashSet<Tkb>();
             DiemDanhs = new HashSet<DiemDanh>();
-
         }
 
         public string MaHs { get; set; } = null!;

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebQLHS.Models;
 
@@ -11,9 +12,10 @@ using WebQLHS.Models;
 namespace WebQLHS.Migrations
 {
     [DbContext(typeof(QLHS_1Context))]
-    partial class QLHS_1ContextModelSnapshot : ModelSnapshot
+    [Migration("20240628024441_DiemDanh")]
+    partial class DiemDanh
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

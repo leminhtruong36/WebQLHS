@@ -11,55 +11,61 @@ namespace WebQLHS.Areas.Admin.Controllers
     [Authentication]
     [CheckRoleUser]
     [Area("admin")]
-	[Route("admin")]
-	[Route("admin/homeadmin")]
-	public class HomeAdminController : Controller
-	{
-		QLHS_1Context db = new QLHS_1Context();
-		[Route("")]
-		[Route("index")]
-		public IActionResult Index()
-		{
-			return View();
-		}
+    [Route("admin")]
+    [Route("admin/homeadmin")]
+    public class HomeAdminController : Controller
+    {
+        QLHS_1Context db = new QLHS_1Context();
+        [Route("")]
+        [Route("index")]
+        public IActionResult Index()
+        {
+            return View();
+        }
 
-		//Danh sach cac lop hoc
-		[Route("danhsachlophoc")]
-		public IActionResult DanhSachLopHoc()
-		{
-			var listLop = db.Lops.ToList();
-			return View(listLop);
-		}
+        //Danh sach cac lop hoc
+        [Route("danhsachlophoc")]
+        public IActionResult DanhSachLopHoc()
+        {
+            var listLop = db.Lops.ToList();
+            return View(listLop);
+        }
 
-		//Them lop hoc moi 
-		[Route("themlopmoi")]
-		[HttpGet]
-		public IActionResult ThemLopMoi()
-		{
-			return View();
-		}
-		[Route("themlopmoi")]
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult ThemLopMoi([Bind("MaLopHoc,TenLop,SiSo")] Lop lopHoc)
-		{
+        //Them lop hoc moi 
+        [Route("themlopmoi")]
+        [HttpGet]
+        public IActionResult ThemLopMoi()
+        {
+            return View();
+        }
+        [Route("themlopmoi")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ThemLopMoi([Bind("MaLopHoc,TenLop,SiSo")] Lop lopHoc)
+        {
             TempData["Message"] = "";
+            if (db.Lops.Any(l => l.MaLopHoc == lopHoc.MaLopHoc))
+            {
+                TempData["Message"] = "Mã lớp học đã tồn tại. Vui lòng nhập mã lớp học khác.";
+                return View(lopHoc);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Lops.Add(lopHoc);
-				db.SaveChanges();
+                db.SaveChanges();
                 TempData["Message"] = "Thêm thành công.";
                 return RedirectToAction("DanhSachLopHoc");
             }
             return View(lopHoc);
         }
 
-		//Sua thong tin lop hoc
+        //Sua thong tin lop hoc
         [Route("sualophoc")]
         [HttpGet]
         public IActionResult SuaLopHoc(string maLop)
         {
-			var lopHoc = db.Lops.Find(maLop);
+            var lopHoc = db.Lops.Find(maLop);
             return View(lopHoc);
         }
         [Route("sualophoc")]
@@ -69,9 +75,9 @@ namespace WebQLHS.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lopHoc).State= EntityState.Modified;
+                db.Entry(lopHoc).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("DanhSachLopHoc","HomeAdmin");
+                return RedirectToAction("DanhSachLopHoc", "HomeAdmin");
             }
             return View(lopHoc);
         }
@@ -164,12 +170,12 @@ namespace WebQLHS.Areas.Admin.Controllers
         }
 
         //Them lop hoc moi 
-		[Route("themnhanvienmoi")]
-		[HttpGet]
-		public IActionResult ThemNhanVienMoi()
-		{
-			return View();
-		}
+        [Route("themnhanvienmoi")]
+        [HttpGet]
+        public IActionResult ThemNhanVienMoi()
+        {
+            return View();
+        }
         [Route("themnhanvienmoi")]
         [HttpPost]
         [ValidateAntiForgeryToken]

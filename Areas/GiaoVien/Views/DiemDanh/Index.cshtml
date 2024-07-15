@@ -1,56 +1,23 @@
-﻿@model WebQLHS.Areas.GiaoVien.Models.DiemDanhListViewModel
+﻿@using WebQLHS.Models;
+@model IEnumerable<HocSinh>
 
 @{
     ViewData["Title"] = "Điểm Danh";
 }
 
-<p>@TempData["Message"]</p>
-<h1>Điểm Danh Ngày @Model.Ngay.ToString("dd/MM/yyyy")</h1>
+<h1>Điểm Danh</h1>
 
-<form method="get" asp-action="Index">
+@using (Html.BeginForm("Check", "DiemDanh", FormMethod.Post))
+{
     <div class="form-group">
-        <label for="maLopHoc">Mã Lớp Học:</label>
-        <input type="text" id="maLopHoc" name="maLopHoc" value="@Model.MaLopHoc" class="form-control" />
+        @Html.Label("Chọn lớp học:")
+        @Html.DropDownList("maLopHoc", ViewBag.LopList as SelectList, new { @class = "form-control" })
     </div>
+
     <div class="form-group">
-        <label for="ngay">Ngày:</label>
-        <input type="date" id="ngay" name="ngay" value="@Model.Ngay.ToString("yyyy-MM-dd")" class="form-control" />
+        @Html.Label("Chọn ngày điểm danh:")
+        @Html.TextBox("ngayDiemDanh", null, new { @class = "form-control datepicker", type = "date" })
     </div>
-    <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
-</form>
 
-<form asp-action="SaveDiemDanh" method="post">
-    <input type="hidden" asp-for="MaLopHoc" />
-    <input type="hidden" asp-for="Ngay" />
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Mã HS</th>
-                <th>Họ Tên</th>
-                <th>Điểm Danh</th>
-                <th>Ghi Chú</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.DiemDanhList.Count; i++)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(model => model.DiemDanhList[i].MaHs)
-                        <input type="hidden" asp-for="DiemDanhList[i].MaHs" />
-                    </td>
-                    <td>@Html.DisplayFor(model => model.DiemDanhList[i].HoTen)</td>
-                    <td>
-                        <input type="checkbox" asp-for="DiemDanhList[i].TrangThai" />
-                    </td>
-                    <td>
-                        <input asp-for="DiemDanhList[i].GhiChu" class="form-control" />
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <button type="submit" class="btn btn-primary">Lưu Điểm Danh</button>
-</form>
+    <button type="submit" class="btn btn-primary">Điểm Danh</button>
+}
