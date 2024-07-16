@@ -61,13 +61,18 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
         [Route("nhapdiem")]
         public IActionResult NhapDiem()
         {
-            return View();
+            string maNv = HttpContext.Session.GetString("MaNV");
+            string MaBangDiem = Guid.NewGuid().ToString().Substring(0, 15);
+            ViewBag.maBangDiem = MaBangDiem;
+            ViewBag.maNV = maNv;
+            var model = new NhapDiemHocSinhViewModel();
+            return View(model);
         }
 
         [Route("nhapdiem")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult NhapDiem(NhapDiemHocSinhViewModel model)
+        public IActionResult NhapDiem(NhapDiemHocSinhViewModel model,string maBangdiem,string maNV)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +83,7 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
                 {
                     bangDiem = new BangDiem
                     {
-                        MaBangDiem = model.MaBangDiem,
+                        MaBangDiem = maBangdiem,
                         MaHs = model.MaHs,
                         MaMh = model.MaMh
                     };
@@ -87,7 +92,7 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
                     db.BangDiems.Add(bangDiem);
                 }
 
-                var manv = HttpContext.Session.GetString("MaNV");
+                string manv = HttpContext.Session.GetString("MaNV");
                 if (string.IsNullOrEmpty(manv))
                 {
                     ModelState.AddModelError("", "Cannot find the current employee ID in the session.");
@@ -99,8 +104,8 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
                     MaNhapDiem = Guid.NewGuid().ToString().Substring(0, 10),
                     DiemSo = model.DiemSo,
                     MaMh = model.MaMh,
-                    MaNv = manv, // Actual current employee ID from session
-                    MaBangDiem = bangDiem.MaBangDiem
+                    MaNv =  maNV, // Actual current employee ID from session
+                    MaBangDiem = maBangdiem
                 };
 
                 LogValidationErrors();
