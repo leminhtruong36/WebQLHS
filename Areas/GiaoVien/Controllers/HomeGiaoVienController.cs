@@ -96,7 +96,7 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
 
                 var nhapDiem = new NhapDiem
                 {
-                    MaNhapDiem = Guid.NewGuid().ToString().Substring(0, 10),
+                    MaNhapDiem = Guid.NewGuid().ToString().Substring(0, 15),
                     DiemSo = model.DiemSo,
                     MaMh = model.MaMh,
                     MaNv = manv, // Actual current employee ID from session

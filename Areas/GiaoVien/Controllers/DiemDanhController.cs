@@ -26,9 +26,9 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
             _logger = logger;
         }
         [HttpGet]
-        [Route("index")]
+        [Route("indexdiemdanh")]
         // Action để hiển thị form điểm danh
-        public IActionResult Index()
+        public IActionResult IndexDiemDanh()
         {
             // Lấy danh sách các lớp để người dùng chọn
             var lopList = _context.Lops.ToList();
