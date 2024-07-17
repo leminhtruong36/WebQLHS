@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using WebQLHS.Models;
@@ -13,11 +12,9 @@ namespace WebQLHS.Controllers
     {
         private readonly QLHS_1Context _context;
         private QLHS_1Context db = new QLHS_1Context();
-        private readonly ILogger<HocSinhController> _logger;
-        public HocSinhController(QLHS_1Context context, ILogger<HocSinhController> logger)
+        public HocSinhController(QLHS_1Context context)
         {
             _context = context;
-            _logger = logger;
         }
         public IActionResult DanhSachHocSinh()
         {
@@ -145,57 +142,33 @@ namespace WebQLHS.Controllers
             return View(model);
         }
         //dong hoc phi
-        public ActionResult DongHocPhi()
-        {
-            string maGiaoDich = Guid.NewGuid().ToString().Substring(0,15);
-            string maHs = HttpContext.Session.GetString("MaHs");
-            ViewBag.MaGiaoDich = maGiaoDich;
-            ViewBag.MaHocSinh = maHs;
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DongHocPhi(string maGiaoDich,string loaiGiaoDich, string maHs,string maNv, double soTien, string moTa)
-        {
-            
-            try
-            {
-                var nhanVien = _context.NhanViens.Find(maNv);
+        [HttpGet]
+        //public IActionResult DongHocPhi()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DongHocPhi(string maHs, string maNv, double soTien, string moTa)
+        //{
+        //    if (string.IsNullOrEmpty(maHs) || string.IsNullOrEmpty(maNv) || soTien <= 0)
+        //    {
+        //        ModelState.AddModelError("", "Thông tin đóng học phí không hợp lệ.");
+        //        return View();
+        //    }
 
-                if (nhanVien == null)
-                {
-                    // Return an error or throw an exception if the MaHs or MaNv does not exist
-                    return View();
-                }
+        //    var result = await _thuChiService.DongHocPhiAsync(maHs, maNv, soTien, moTa);
+        //    if (result)
+        //    {
+        //        return RedirectToAction("ThongTinCaNhan");
+        //    }
+        //    else
+        //    {
+        //        ModelState.AddModelError("", "Đóng học phí thất bại. Vui lòng thử lại.");
+        //        return View();
+        //    }
+        //}
 
-                var thuChi = new ThuChi
-                {
-                    MaGiaoDich = maGiaoDich,
-                    LoaiGiaoDich = loaiGiaoDich,
-                    NgayGiaoDich = DateTime.Now,
-                    SoTien = soTien,
-                    MoTa = moTa,
-                    MaHs = maHs,
-                    MaNv = maNv,
-                    MaHsNavigation = null,
-                    MaNvNavigation = null
-                };
-                // Save thuChi to database here
-                // For example, using Entity Framework:
-                db.ThuChis.Add(thuChi);
-                 db.SaveChanges();
-                _logger.LogInformation("yes sir");
-                return RedirectToAction("Index"); // Redirect to an appropriate page after saving
-                
-            }
-            catch (Exception ex)
-            {
-                // Log the error (ex) here
-                _logger.LogInformation("no sir {ex}",ex);
-                return View();
-            }
-        }
-      
         public IActionResult Index()
         {
             return View();

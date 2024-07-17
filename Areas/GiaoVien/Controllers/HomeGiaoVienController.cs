@@ -61,18 +61,13 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
         [Route("nhapdiem")]
         public IActionResult NhapDiem()
         {
-            string maNv = HttpContext.Session.GetString("MaNV");
-            string MaBangDiem = Guid.NewGuid().ToString().Substring(0, 15);
-            ViewBag.maBangDiem = MaBangDiem;
-            ViewBag.maNV = maNv;
-            var model = new NhapDiemHocSinhViewModel();
-            return View(model);
+            return View();
         }
 
         [Route("nhapdiem")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult NhapDiem(NhapDiemHocSinhViewModel model,string maBangdiem,string maNV)
+        public ActionResult NhapDiem(NhapDiemHocSinhViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +78,7 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
                 {
                     bangDiem = new BangDiem
                     {
-                        MaBangDiem = maBangdiem,
+                        MaBangDiem = model.MaBangDiem,
                         MaHs = model.MaHs,
                         MaMh = model.MaMh
                     };
@@ -92,7 +87,7 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
                     db.BangDiems.Add(bangDiem);
                 }
 
-                string manv = HttpContext.Session.GetString("MaNV");
+                var manv = HttpContext.Session.GetString("MaNV");
                 if (string.IsNullOrEmpty(manv))
                 {
                     ModelState.AddModelError("", "Cannot find the current employee ID in the session.");
@@ -104,8 +99,8 @@ namespace WebQLHS.Areas.GiaoVien.Controllers
                     MaNhapDiem = Guid.NewGuid().ToString().Substring(0, 15),
                     DiemSo = model.DiemSo,
                     MaMh = model.MaMh,
-                    MaNv =  maNV, // Actual current employee ID from session
-                    MaBangDiem = maBangdiem
+                    MaNv = manv, // Actual current employee ID from session
+                    MaBangDiem = bangDiem.MaBangDiem
                 };
 
                 LogValidationErrors();
