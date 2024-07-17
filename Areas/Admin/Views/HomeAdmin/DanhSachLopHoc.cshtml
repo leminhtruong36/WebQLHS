@@ -3,7 +3,6 @@
 
 @{
     ViewData["Title"] = "Danh sách lớp học";
-    Layout = "_LayoutAdmin";
 }
 
 
@@ -13,6 +12,9 @@
     <table class="table">
         <thead>
             <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaLopHoc)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.TenLop)
                 </th>
@@ -26,6 +28,9 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaLopHoc)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TenLop)
                     </td>

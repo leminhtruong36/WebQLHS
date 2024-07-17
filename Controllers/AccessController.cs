@@ -42,7 +42,15 @@ namespace WebQLHS.Controllers
                     HttpContext.Session.SetString("MaNV", checkRoleGV.Ma.ToString().Trim());
                     return RedirectToAction("index", "homegiaovien", new { area = "giaovien" });
                 }
-
+                var checkHS = db.TaiKhoans.Where(x => x.Email.Equals(user.Email) && x.Mk.Equals(user.Mk) && x.LoaiTaiKhoan.Equals("HocSinh")).FirstOrDefault();
+                if (checkHS != null)
+                {
+                    HttpContext.Session.SetString("Username", checkHS.Email.ToString().Trim());
+                    HttpContext.Session.SetString("Role", checkHS.LoaiTaiKhoan.ToString().Trim());
+                    HttpContext.Session.SetString("MaHs", checkHS.Ma.ToString().Trim());
+                    HttpContext.Session.SetString("MaTk", checkHS.MaTk.ToString().Trim());                   
+                    return RedirectToAction("index", "HocSinh");
+                }
                 var u = db.TaiKhoans.Where(x => x.Email.Equals(user.Email) && x.Mk.Equals(user.Mk)).FirstOrDefault();
                 if (u != null)
                 {
@@ -50,7 +58,6 @@ namespace WebQLHS.Controllers
                     HttpContext.Session.SetString("Role", u.LoaiTaiKhoan.ToString().Trim());
                     return RedirectToAction("Index", "Home");
                 }
-
             }
             return View();
         }

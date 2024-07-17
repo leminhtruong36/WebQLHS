@@ -128,6 +128,26 @@ namespace WebQLHS.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DiemDanhs",
+                columns: table => new
+                {
+                    MaDiemDanh = table.Column<string>(type: "char(15)", unicode: false, fixedLength: true, maxLength: 15, nullable: false),
+                    MaHs = table.Column<string>(type: "char(15)", unicode: false, fixedLength: true, maxLength: 15, nullable: false),
+                    Ngay = table.Column<DateTime>(type: "date", nullable: false),
+                    TrangThai = table.Column<bool>(type: "bit", nullable: false),
+                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DiemDanhs", x => x.MaDiemDanh);
+                    table.ForeignKey(
+                        name: "FK_DiemDanh_HocSinh",
+                        column: x => x.MaHs,
+                        principalTable: "HocSinh",
+                        principalColumn: "MaHS");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BaiTap",
                 columns: table => new
                 {
@@ -302,6 +322,11 @@ namespace WebQLHS.Migrations
                 column: "MaNV");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DiemDanhs_MaHs",
+                table: "DiemDanhs",
+                column: "MaHs");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_HocSinh_MaLopHoc",
                 table: "HocSinh",
                 column: "MaLopHoc");
@@ -376,6 +401,9 @@ namespace WebQLHS.Migrations
 
             migrationBuilder.DropTable(
                 name: "ChucVu");
+
+            migrationBuilder.DropTable(
+                name: "DiemDanhs");
 
             migrationBuilder.DropTable(
                 name: "MonHoc_TKB");

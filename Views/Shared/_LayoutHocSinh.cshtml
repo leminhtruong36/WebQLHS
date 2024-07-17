@@ -1,4 +1,9 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +29,8 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" asp-area="GiaoVien" asp-controller="HomeGiaoVien" asp-action="Index"><img src="~/layoutadmin/assets/images\logo.svg" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" asp-area="GiaoVien" asp-controller="HomeGiaoVien" asp-action="Index"><img src="~/layoutadmin/assets/images\logo-mini.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo" asp-area="Admin" asp-controller="HomeAdmin" asp-action="Index"><img src="~/layoutadmin/assets/images\logo.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" asp-area="Admin" asp-controller="HomeAdmin" asp-action="Index"><img src="~/layoutadmin/assets/images\logo-mini.svg" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -191,25 +196,63 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="GiaoVien" asp-controller="HomeGiaoVien" asp-action="Index">
+                        <a class="nav-link" asp-controller="HocSinh" asp-action="Index">
                             <span class="menu-title">Dashboard</span>
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                            <span class="menu-title">Quản lý lớp</span>
+                            <span class="menu-title">Trang Cá Nhân</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item mx-2">
-                                    <a class="nav-link" asp-area="GiaoVien" asp-controller="DiemDanh" asp-action="IndexDiemDanh">Điểm danh</a>
+                                    <a class="nav-link" asp-controller="HocSinh" asp-action="ThongTinCaNhan">Thông Tin Cá Nhân</a>
                                 </li>
                                 <li class="nav-item mx-2">
-                                    <a class="nav-link" asp-area="GiaoVien" asp-controller="HomeGiaoVien" asp-action="DanhSachHocSinhLopChuNhiem">Danh sách lớp chủ nhiệm</a>
+                                    <a class="nav-link" asp-controller="HocSinh" asp-action="ThongBao">Thông Báo</a>
                                 </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
+                            <span class="menu-title">Tra Cứu Thông Tin</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic1">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" asp-controller="HocSinh" asp-action="XemLichHoc">Lịch Học</a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" asp-controller="HocSinh" asp-action="XemLichThi">Lịch Thi</a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" asp-controller="HocSinh" asp-action="KetQuaHocTap">Kết Quả Học Tập</a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" asp-controller="HocSinh" asp-action="NhapDiem">Danh Sách Lớp</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                            <span class="menu-title">Chức Năng Trực Tuyến</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" asp-controller="HocSinh" asp-action="ThuChi">Đóng Học Phí</a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </li>

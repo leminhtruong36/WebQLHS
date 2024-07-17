@@ -12,7 +12,7 @@ using WebQLHS.Models;
 namespace WebQLHS.Migrations
 {
     [DbContext(typeof(QLHS_1Context))]
-    [Migration("20240626060135_Initial")]
+    [Migration("20240626145309_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,6 +126,40 @@ namespace WebQLHS.Migrations
                     b.HasIndex("MaNv");
 
                     b.ToTable("ChucVu", (string)null);
+                });
+
+            modelBuilder.Entity("WebQLHS.Models.DiemDanh", b =>
+                {
+                    b.Property<string>("MaDiemDanh")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(15)
+                        .IsUnicode(false)
+                        .HasColumnType("char(15)")
+                        .IsFixedLength();
+
+                    b.Property<string>("GhiChu")
+                        .IsRequired()
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaHs")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .IsUnicode(false)
+                        .HasColumnType("char(15)")
+                        .IsFixedLength();
+
+                    b.Property<DateTime>("Ngay")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("TrangThai")
+                        .HasColumnType("bit");
+
+                    b.HasKey("MaDiemDanh");
+
+                    b.HasIndex("MaHs");
+
+                    b.ToTable("DiemDanhs");
                 });
 
             modelBuilder.Entity("WebQLHS.Models.HocSinh", b =>
@@ -539,6 +573,17 @@ namespace WebQLHS.Migrations
                     b.Navigation("MaNvNavigation");
                 });
 
+            modelBuilder.Entity("WebQLHS.Models.DiemDanh", b =>
+                {
+                    b.HasOne("WebQLHS.Models.HocSinh", "HocSinh")
+                        .WithMany("DiemDanhs")
+                        .HasForeignKey("MaHs")
+                        .IsRequired()
+                        .HasConstraintName("FK_DiemDanh_HocSinh");
+
+                    b.Navigation("HocSinh");
+                });
+
             modelBuilder.Entity("WebQLHS.Models.HocSinh", b =>
                 {
                     b.HasOne("WebQLHS.Models.Lop", "MaLopHocNavigation")
@@ -667,6 +712,8 @@ namespace WebQLHS.Migrations
             modelBuilder.Entity("WebQLHS.Models.HocSinh", b =>
                 {
                     b.Navigation("BangDiems");
+
+                    b.Navigation("DiemDanhs");
 
                     b.Navigation("ThuChis");
 

@@ -1,0 +1,36 @@
+﻿@using WebQLHS.Models;
+@model IEnumerable<HocSinh>
+
+@{
+    ViewData["Title"] = "Điểm Danh";
+}
+
+<h1>Điểm Danh ngày @ViewBag.NgayDiemDanh.ToShortDateString()</h1>
+
+@using (Html.BeginForm("LuuDiemDanh", "DiemDanh", FormMethod.Post))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Họ và Tên</th>
+                <th>Vắng</th>
+                <th>Có phép</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hocSinh in Model)
+            {
+                <tr>
+                    <td>@hocSinh.HoTen</td>
+                    <td><input type="checkbox" name="coPhepList" value="true" /></td>
+                    <td><input type="checkbox" name="vangList" value="true" /></td>
+                    <input type="hidden" name="maHsList" value="@hocSinh.MaHs" />
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <input type="hidden" name="ngayDiemDanh" value="@ViewBag.NgayDiemDanh.ToShortDateString()" />
+
+    <button type="submit" class="btn btn-primary">Lưu Điểm Danh</button>
+}

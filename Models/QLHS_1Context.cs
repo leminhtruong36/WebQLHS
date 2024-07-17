@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -7,7 +9,7 @@ namespace WebQLHS.Models
 {
     public partial class QLHS_1Context : DbContext
     {
-        public QLHS_1Context()
+        public QLHS_1Context() 
         {
         }
 
@@ -16,6 +18,7 @@ namespace WebQLHS.Models
         {
         }
 
+        public virtual DbSet<DiemDanh> DiemDanh { get; set; } = null!;
         public virtual DbSet<BaiTap> BaiTaps { get; set; } = null!;
         public virtual DbSet<BangDiem> BangDiems { get; set; } = null!;
         public virtual DbSet<ChucVu> ChucVus { get; set; } = null!;
@@ -40,6 +43,41 @@ namespace WebQLHS.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DiemDanh>(entity =>
+            {
+                entity.HasKey(e => e.MaDiemDanh);
+
+                entity.Property(e => e.MaDiemDanh)
+                      .HasMaxLength(256)
+                      .IsUnicode(false)
+                      .IsFixedLength();
+
+                entity.Property(e => e.MaHs)
+                      .IsRequired()
+                      .HasMaxLength(15)
+                      .IsUnicode(false)
+                      .IsFixedLength();
+
+                entity.Property(e => e.Ngay)
+                      .IsRequired()
+                      .HasColumnType("date");
+
+                entity.Property(e => e.CoPhep) // Định nghĩa trường mới
+                      .IsRequired();
+
+                entity.Property(e => e.Vang) // Định nghĩa trường mới
+                      .IsRequired();
+
+                entity.Property(e => e.GhiChu)
+                      .IsUnicode(true);
+
+                entity.HasOne(d => d.HocSinh)
+                      .WithMany(p => p.DiemDanhs)
+                      .HasForeignKey(d => d.MaHs)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("FK_DiemDanh_HocSinh");
+            });
+
             modelBuilder.Entity<BaiTap>(entity =>
             {
                 entity.HasKey(e => e.MaBaiTap)
