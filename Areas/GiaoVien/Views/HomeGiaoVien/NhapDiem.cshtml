@@ -1,58 +1,30 @@
-﻿@model WebQLHS.Models.NhapDiemHocSinhViewModel;
-@using (Html.BeginForm("NhapDiem", "HomeGiaoVien", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+﻿@model IEnumerable<WebQLHS.Models.NhapDiemHocSinhViewModel>
 
-    <div class="form-horizontal">
-        <h4>Nhập Điểm Học Sinh</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaBangDiem,"Mã Bảng Điểm", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBox("MaBangDiem", ViewBag.maBangDiem as string, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MaBangDiem, "", new { @class = "text-danger" })
-                <span>@ViewBag.ExtraInfo</span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaNV,"Mã NV", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBox("MaNV", ViewBag.maNV as string, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaHs,"Mã Học Sinh", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaHs, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaHs, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaMh,"Mã Môn", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaMh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaMh, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DiemSo,"Điểm Số", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DiemSo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiemSo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Nhập Điểm" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+@{
+    ViewData["Title"] = "Nhập Điểm Học Sinh";
 }
+
+<h2>Nhập Điểm Học Sinh</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã Bảng Điểm</th>
+            <th>Mã Học Sinh</th>
+            <th>Mã Môn Học</th>
+            <th>Điểm Số</th>
+            <th>Mã Nhân Viên</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaBangDiem</td>
+                <td>@item.MaHs</td>
+                <td>@item.MaMh</td>
+                <td>@item.DiemSo</td>                
+            </tr>
+        }
+    </tbody>
+</table>
